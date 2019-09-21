@@ -1,4 +1,5 @@
 package com.ibm.ph.amperca.app.interestcalculator;
+import java.text.DecimalFormat;
 
 public class CompoundInterestCalculator {
     
@@ -6,7 +7,28 @@ public class CompoundInterestCalculator {
     private double interest = 0;
     private int period = 0;
     private int compoundInterval = 0;
-    private double futureValue = 0.0;
+    private double interestDeduction = 0;
+    private int compoundIntervalDeduction= 0;
+
+    public double getInterestDeduction() {
+        return interestDeduction;
+    }
+
+
+    public void setInterestDeduction(double interestDeduction) {
+        this.interestDeduction = interestDeduction;
+    }
+
+
+    public int getCompoundIntervalDeduction() {
+        return compoundIntervalDeduction;
+    }
+
+
+    public void setCompoundIntervalDeduction(int compoundIntervalDeduction) {
+        this.compoundIntervalDeduction = compoundIntervalDeduction;
+    }
+
 
     public CompoundInterestCalculator(double principal, int interest, int period, int compoundInterval) {
         this.setPrincipal(principal);
@@ -57,7 +79,8 @@ public class CompoundInterestCalculator {
     }
     
     private double calculateCompoundInterest() {
-        return Double.valueOf(this.getPrincipal()*Math.pow((1 + (this.getInterest()/this.getCompoundInterval())),(this.getCompoundInterval()*this.getPeriod())));
+        double result = this.getPrincipal()*Math.pow((1 + (this.getInterest()/this.getCompoundInterval())),(this.getCompoundInterval()*this.getPeriod()));
+        return Double.valueOf(result);
     }
     
     private double calculateInterest(int interestInpercent) {
