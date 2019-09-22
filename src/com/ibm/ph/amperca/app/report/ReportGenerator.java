@@ -14,6 +14,11 @@ public class ReportGenerator {
         DecimalFormat df = new DecimalFormat("#.##");
         List<IncrementReport> listOfIreport = new ArrayList<>();
         List<DeductionReport> listOfDreport = new ArrayList<>();
+
+        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("RESULTS:");
+        System.out.println("-------------------------------------------------------------------------------------\n\n");
+
         System.out.println("INCREMENT REPORT");
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.format("%7s %17s %23s %17s %17s", "Year", "Starting Salary", "Number of increment", "Increment %", "Increment Amount");
