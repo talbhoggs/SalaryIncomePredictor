@@ -1,5 +1,7 @@
 package com.ibm.ph.amperca.app.utils;
 
+import java.util.regex.Pattern;
+
 public class ReportUtility {
     public static String numberToWordCompoundInterestConverter(int i) {
         switch(i) {
@@ -39,5 +41,9 @@ public class ReportUtility {
             default:
                 return 30;
         }
+    }
+
+    public static boolean validInput(String input ) {
+        return Pattern.matches("[1-9]\\d*|0", input);
     }
 }

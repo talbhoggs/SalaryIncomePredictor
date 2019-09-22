@@ -2,6 +2,7 @@ package com.ibm.ph.amperca.app;
 
 import java.text.DecimalFormat;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 import com.ibm.ph.amperca.app.report.ReportGenerator;
 import com.ibm.ph.amperca.app.utils.ReportUtility;
@@ -17,31 +18,28 @@ public class SalaryIncomePredictor {
         /* salary section */
         do {
             System.out.print("Please enter your Salary: ");
-            while(!sc.hasNextDouble()) {
-                String s = sc.next();
-                System.out.printf("\"%s\" is not a valid number.\n", s);
-                System.out.println("input should be a positive number");
+            String input = sc.next();
+            while(!ReportUtility.validInput(input)) {
+                System.out.printf("\"%s\" is not a valid number.Please provide your input again\n", input);
+                input = sc.next();
             }
-            salary = sc.nextDouble();
+            salary = Double.parseDouble(input);
         } while(salary < 0);
-
         System.out.println();
-        int interest = 0;
 
         /* interest section */
+        int interest = 0;
         do {
             System.out.print("Please enter the increment to be received (in percent): ");
-            while (!sc.hasNextInt()) {
-                String s = sc.next();
-                System.out.printf("\"%s\" is not a valid number.\n", s);
-                System.out.println("input should be a positive number");
+            String input = sc.next();
+            while(!ReportUtility.validInput(input)) {
+                System.out.printf("\"%s\" is not a valid number.Please provide your input again\n", input);
+                input = sc.next();
             }
-            interest = sc.nextInt();
+            interest = Integer.parseInt(input);
         } while(interest < 0);
 
         System.out.println();
-
-        /* interest frequency section */
         int incrementRecieved = 0;
         do {
             System.out.print("Please enter the frequency to be received: ");
@@ -52,27 +50,26 @@ public class SalaryIncomePredictor {
             System.out.println("[4] Yearly");
             System.out.println();
             System.out.println("Example: 1 for Monthly");
-
-            while (!sc.hasNextInt()) {
-                String s = sc.next();
-                System.out.printf("\"%s\" is not a valid number.\n", s);
-                System.out.println("input should be on the given choices above");
+            String input = sc.next();
+            while(!ReportUtility.validInput(input)) {
+                System.out.printf("\"%s\" is not a valid number.Please provide your input again\n", input);
+                input = sc.next();
             }
-            incrementRecieved = sc.nextInt();
-
+            incrementRecieved = Integer.parseInt(input);
         } while(incrementRecieved < 0 || incrementRecieved > 4);
 
         incrementRecieved = ReportUtility.choiceToTrueValueIncrementConverter(incrementRecieved);
+
         /* interest ducted in percent */
         int interestInprecentDeductions = 0;
         do {
             System.out.print("Please enter the interest to be deducted (in percent): ");
-            while (!sc.hasNextInt()) {
-                String s = sc.next();
-                System.out.printf("\"%s\" is not a valid number.\n", s);
-                System.out.println("input should be a positive number");
+            String input = sc.next();
+            while(!ReportUtility.validInput(input)) {
+                System.out.printf("\"%s\" is not a valid number.Please provide your input again\n", input);
+                input = sc.next();
             }
-            interestInprecentDeductions = sc.nextInt();
+            interestInprecentDeductions = Integer.parseInt(input);
         } while(interestInprecentDeductions < 0);
 
         System.out.println();
@@ -88,18 +85,19 @@ public class SalaryIncomePredictor {
             System.out.println("[4] Yearly");
             System.out.println();
             System.out.println("Example: 1 for Monthly");
-            while (!sc.hasNextInt()) {
-                String s = sc.next();
-                System.out.printf("\"%s\" is not a valid number.\n", s);
-                System.out.println("input should be on the given choices above");
+            String input = sc.next();
+            while(!ReportUtility.validInput(input)) {
+                System.out.printf("\"%s\" is not a valid number.Please provide your input again\n", input);
+                input = sc.next();
             }
-            deductionRecieved = sc.nextInt();
+            deductionRecieved = Integer.parseInt(input);
         } while(deductionRecieved < 0 || deductionRecieved > 4);
 
         deductionRecieved = ReportUtility.choiceToTrueValueIncrementConverter(deductionRecieved);
 
         /* period section */
         int period = 0;
+
         do {
             System.out.print("Please enter the period of time");
             System.out.println();
@@ -109,15 +107,14 @@ public class SalaryIncomePredictor {
             System.out.println("[4] 30 years");
             System.out.println();
             System.out.println("Example: 5 for years");
-
-            while (!sc.hasNextInt()) {
-                String s = sc.next();
-                System.out.printf("\"%s\" is not a valid number.\n", s);
-                System.out.println("input should be on the given choices above");
+            String input = sc.next();
+            while(!ReportUtility.validInput(input)) {
+                System.out.printf("\"%s\" is not a valid number.Please provide your input again\n", input);
+                input = sc.next();
             }
-            period = sc.nextInt();
-
+            period = Integer.parseInt(input);
         } while(period < 0 || period > 4);
+
         period = ReportUtility.choiceToTrueValuePeriodConverter(period);
 
         sc.close();
@@ -125,6 +122,7 @@ public class SalaryIncomePredictor {
         System.out.println();
         System.out.println();
         System.out.println();
+        System.out.println(salary + "\n" + period+ "\n" + interest+ "\n" + incrementRecieved+ "\n" + interestInprecentDeductions+ "\n" + deductionRecieved);
         ReportGenerator.generate(salary, period, interest, incrementRecieved, interestInprecentDeductions, deductionRecieved);
 
     }
