@@ -122,7 +122,6 @@ public class SalaryIncomePredictor {
         System.out.println();
         System.out.println();
         System.out.println();
-        System.out.println(salary + "\n" + period+ "\n" + interest+ "\n" + incrementRecieved+ "\n" + interestInprecentDeductions+ "\n" + deductionRecieved);
         ReportGenerator.generate(salary, period, interest, incrementRecieved, interestInprecentDeductions, deductionRecieved);
 
     }
